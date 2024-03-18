@@ -20,19 +20,20 @@ class FightSystem:
     def __init__(self):
         # 变量
         # 生命值上限
-        self.base_hp = 15000
+        self.base_hp = 48610
         # 基础攻击力
-        self.base_power = 1000
+        self.base_power = 1070
         # 攻击力加成
         self.power_buff = 0.75
         # 元素精通
         self.element_power = 200
         # 暴击率
-        self.damage_probability = 0.9
+        self.damage_probability = 0.75
         # 暴击伤害
-        self.damage_buff = 2.01
+        self.damage_buff = 1.12
         # 元素增伤
-        self.element_buff = 0.615
+        self.element_buff = 0.766
+        # self.element_buff = 0.30
         # 伤害增伤
         self.all_element_buff = 0.4
 
@@ -81,6 +82,11 @@ class FightSystem:
             print(Color.yellow, '元素爆发 * 10')
             result = power * \
                      self.skill_boss * \
+                     (self.element_buff + self.all_element_buff + 1) * \
+                     (self.is_damege() + 1)
+        elif instruct == '4':  # 重击
+            print(Color.yellow, '那维莱特重击')
+            result = self.base_hp * 0.1447 * \
                      (self.element_buff + self.all_element_buff + 1) * \
                      (self.is_damege() + 1)
         return result
